@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { AxeCapitalService } from 'src/external_providers/axeCapital/axeCapital.service';
-import { ProductService } from '../product/product.service';
+import { ProductProviderService } from 'src/external_providers/productProvider/productProvider.service';
 
 @Injectable()
 export class OrderService {
-  constructor(private readonly axeCapitalService: AxeCapitalService, private readonly productService: ProductService) { }
+  constructor(private readonly axeCapitalService: AxeCapitalService, private readonly productProviderService: ProductProviderService) { }
 
   foo() {
     const response = 'This is the Order Service! '
     .concat(' \n ')
-    .concat(this.productService.foo())
+    .concat(this.productProviderService.integrate())
     .concat(' \n ')
     .concat(this.axeCapitalService.integrate());
 
